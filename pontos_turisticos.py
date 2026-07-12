@@ -4,6 +4,10 @@ O Problema do Caixeiro Viajante em Contextos Reais
 
 Implementação da heurística do vizinho mais próximo (Nearest Neighbor)
 para otimização de percursos turísticos em Portugal.
+
+Autores:
+    - Rodrigo Andrade (aluno28503)
+    - Eric Cardoso (aluno20518)
 """
 
 import math

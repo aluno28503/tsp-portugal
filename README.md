@@ -4,6 +4,11 @@ Trabalho Final (Parte II) — Heurísticas: O Problema do Caixeiro Viajante em C
 
 Implementação em Python da heurística do **Vizinho Mais Próximo** (Nearest Neighbor) para otimização de percursos turísticos em Portugal, incluindo locais UNESCO, castelos e museus.
 
+## Autores
+
+- **Rodrigo Andrade** — aluno28503
+- **Eric Cardoso** — aluno20518
+
 ## Funcionalidades
 
 - **30 pontos turísticos** reais de Portugal com coordenadas geográficas
