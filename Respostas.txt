@@ -1,0 +1,23 @@
+============================================================
+RESPOSTAS - ANÁLISE DO TSP PORTUGAL
+============================================================
+
+1. Diferença entre Aleatório e Algoritmos de Otimização:
+- Média das rotas aleatórias: 4644 km
+- Pior rota aleatória: 5929 km
+- Rota gerada pelo Vizinho Mais Próximo: 1301 km
+Conclusão: Apenas utilizar uma estratégia cega (ir para o mais perto) poupa logo mais de 3000 km de viagem em comparação com viajar ao calhas.
+
+2. A Importância do 2-Opt:
+Apesar do Vizinho Mais Próximo ser muito melhor que o aleatório, ele tem o defeito de cruzar linhas no final (quando fica com opções muito limitadas nas pontas do país).
+- Distância inicial do NN: 1301.35 km
+- Distância final com 2-opt: 1163.98 km
+Conclusão: O algoritmo 2-opt reduziu a distância em mais de 10%, melhorando muito a eficiência ao desfazer os cruzamentos de rotas que obrigavam a atravessar o país sem necessidade.
+
+3. Clusters identificados:
+Estes são grupos de pontos a menos de 10km uns dos outros, podendo ser tratados como "um só" se quiséssemos acelerar os cálculos:
+- Lisboa/Sintra/Estuário do Tejo
+- Guimarães
+- Porto (Serralves e Ribeira)
+- Évora
+- Coimbra

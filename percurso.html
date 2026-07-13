@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_dc6ec48489717a30f650666a4bb70c99 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+    <div style="position: fixed; top: 10px; right: 10px; z-index: 1000;
+                background-color: white; padding: 10px; border-radius: 5px;
+                border: 1px solid black; font-family: Arial; font-weight: bold;">
+        Percurso TSP (1164 km)
+    </div>
+    
+    
+            <div class="folium-map" id="map_dc6ec48489717a30f650666a4bb70c99" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_dc6ec48489717a30f650666a4bb70c99 = L.map(
+                "map_dc6ec48489717a30f650666a4bb70c99",
+                {
+                    center: [39.7, -8.2],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 7,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_9843684e6537793d40ae334034fc3a05 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_9843684e6537793d40ae334034fc3a05.addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            var circle_marker_05b37922cb2e7dfac738bbd305fe1a82 = L.circleMarker(
+                [39.236, -8.687],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 8, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_05b37922cb2e7dfac738bbd305fe1a82.bindTooltip(
+                `<div>
+                     0. Santarém (ponto de partida)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_5aa02935989ee0222bafefbbe33521b3 = L.circleMarker(
+                [38.697, -9.205],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_5aa02935989ee0222bafefbbe33521b3.bindTooltip(
+                `<div>
+                     22. Mosteiro dos Jerónimos (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_4c24c82e8d3ba21ece271a9ef631111e = L.circleMarker(
+                [38.691, -9.216],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_4c24c82e8d3ba21ece271a9ef631111e.bindTooltip(
+                `<div>
+                     23. Torre de Belém (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eba9a2e84636ba4d8f331ba9aa582a71 = L.circleMarker(
+                [38.797, -9.39],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_eba9a2e84636ba4d8f331ba9aa582a71.bindTooltip(
+                `<div>
+                     25. Centro Histórico de Sintra (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6a0e84a7b9f94154fb79e0d36c005644 = L.circleMarker(
+                [38.787, -9.39],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_6a0e84a7b9f94154fb79e0d36c005644.bindTooltip(
+                `<div>
+                     24. Palácio Nacional da Pena
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_1ab95a7ed67107c4606785693b70eccd = L.circleMarker(
+                [39.603, -8.414],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_1ab95a7ed67107c4606785693b70eccd.bindTooltip(
+                `<div>
+                     2. Convento de Cristo (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_048a3701dfef32256b709d767f6f86bc = L.circleMarker(
+                [39.659, -8.825],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_048a3701dfef32256b709d767f6f86bc.bindTooltip(
+                `<div>
+                     29. Mosteiro da Batalha (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_685b5f6f59ceace2ea5fefeb72500a7e = L.circleMarker(
+                [39.548, -8.979],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_685b5f6f59ceace2ea5fefeb72500a7e.bindTooltip(
+                `<div>
+                     28. Mosteiro de Alcobaça (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_385fc8757ef9eeb4341ea9946dabc42b = L.circleMarker(
+                [40.208, -8.423],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_385fc8757ef9eeb4341ea9946dabc42b.bindTooltip(
+                `<div>
+                     3. Universidade de Coimbra (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e1123da577a4eeaca401c1e1cd270a6e = L.circleMarker(
+                [41.142, -8.615],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_e1123da577a4eeaca401c1e1cd270a6e.bindTooltip(
+                `<div>
+                     6. Centro Histórico do Porto (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_83dd82ef4bb09f8955c5ec2098f3ac49 = L.circleMarker(
+                [41.14, -8.609],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_83dd82ef4bb09f8955c5ec2098f3ac49.bindTooltip(
+                `<div>
+                     5. Ponte D. Luís I
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_783c0007852157e816af895e7616138a = L.circleMarker(
+                [41.444, -8.296],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_783c0007852157e816af895e7616138a.bindTooltip(
+                `<div>
+                     9. Centro Histórico de Guimarães (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_e384e4a81400048c34a91680bddef7b1 = L.circleMarker(
+                [41.447, -8.29],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_e384e4a81400048c34a91680bddef7b1.bindTooltip(
+                `<div>
+                     10. Castelo de Guimarães
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eb4acd0d95b08d57adb630b64b68d3b2 = L.circleMarker(
+                [41.554, -8.379],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_eb4acd0d95b08d57adb630b64b68d3b2.bindTooltip(
+                `<div>
+                     8. Bom Jesus do Monte (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_11b709bdf6bc24ab70a5cf2d87b8207a = L.circleMarker(
+                [38.937, -9.327],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_11b709bdf6bc24ab70a5cf2d87b8207a.bindTooltip(
+                `<div>
+                     26. Palácio Nacional de Mafra (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_3bf0f20de64a7d10a400588e391fa7bd = L.circleMarker(
+                [38.571, -7.909],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_3bf0f20de64a7d10a400588e391fa7bd.bindTooltip(
+                `<div>
+                     17. Centro Histórico de Évora (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_19e179d91323ff274f5d2962094218d8 = L.circleMarker(
+                [38.573, -7.909],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_19e179d91323ff274f5d2962094218d8.bindTooltip(
+                `<div>
+                     16. Templo Romano de Évora
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0a83f0135a51d38041efca4860164a28 = L.circleMarker(
+                [38.879, -7.162],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_0a83f0135a51d38041efca4860164a28.bindTooltip(
+                `<div>
+                     15. Centro Histórico de Elvas (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_6cbba9dc3cc9fcd160504f0cf5ed3038 = L.circleMarker(
+                [39.36, -9.156],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_6cbba9dc3cc9fcd160504f0cf5ed3038.bindTooltip(
+                `<div>
+                     27. Castelo de Óbidos
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_10ebf20b03595f2f9926d9da29662ea1 = L.circleMarker(
+                [38.713, -9.133],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_10ebf20b03595f2f9926d9da29662ea1.bindTooltip(
+                `<div>
+                     19. Castelo de São Jorge
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c29de5c06046952807e92a1c63492e85 = L.circleMarker(
+                [38.707, -9.17],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_c29de5c06046952807e92a1c63492e85.bindTooltip(
+                `<div>
+                     20. Museu Nacional de Arte Antiga
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_c3a0cf9268e29595f1c923d4a104e54f = L.circleMarker(
+                [38.728, -9.115],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_c3a0cf9268e29595f1c923d4a104e54f.bindTooltip(
+                `<div>
+                     18. Museu Nacional do Azulejo
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_18136bd97372c53591384ef644e29b0b = L.circleMarker(
+                [38.699, -9.201],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_18136bd97372c53591384ef644e29b0b.bindTooltip(
+                `<div>
+                     21. Museu Nacional dos Coches
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f88e7d9f2a46ec757ff67b4b02022d7b = L.circleMarker(
+                [41.159, -8.659],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_f88e7d9f2a46ec757ff67b4b02022d7b.bindTooltip(
+                `<div>
+                     7. Fundação de Serralves
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_114d75336b0fb9df3fa779754751b32a = L.circleMarker(
+                [41.806, -6.757],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_114d75336b0fb9df3fa779754751b32a.bindTooltip(
+                `<div>
+                     12. Castelo de Bragança
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2e671e6437115adadf9dc646680f70eb = L.circleMarker(
+                [39.393, -7.378],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_2e671e6437115adadf9dc646680f70eb.bindTooltip(
+                `<div>
+                     14. Castelo de Marvão
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_b7097d773b2fb5f6f75eedf34d5061c8 = L.circleMarker(
+                [39.463, -8.347],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_b7097d773b2fb5f6f75eedf34d5061c8.bindTooltip(
+                `<div>
+                     1. Castelo de Almourol
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_9b08e67c80c898249fbeea52bf00fcd9 = L.circleMarker(
+                [41.163, -7.789],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_9b08e67c80c898249fbeea52bf00fcd9.bindTooltip(
+                `<div>
+                     11. Museu do Douro (UNESCO Alto Douro)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_15b850eac0e9c0d83405a60d476613e0 = L.circleMarker(
+                [41.079, -7.154],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_15b850eac0e9c0d83405a60d476613e0.bindTooltip(
+                `<div>
+                     13. Parque Arqueológico do Vale do Côa (UNESCO)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_2883aa2faf14212f5da8c6dd9e3a74b6 = L.circleMarker(
+                [40.21, -8.426],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 1.0, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 5, "stroke": true, "weight": 3}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+    
+            circle_marker_2883aa2faf14212f5da8c6dd9e3a74b6.bindTooltip(
+                `<div>
+                     4. Sé Velha de Coimbra
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_b801ede8f26f69a44de0da8808d66a6d = L.polyline(
+                [[39.236, -8.687], [39.463, -8.347], [39.603, -8.414], [40.208, -8.423], [40.21, -8.426], [41.14, -8.609], [41.142, -8.615], [41.159, -8.659], [41.554, -8.379], [41.444, -8.296], [41.447, -8.29], [41.163, -7.789], [41.806, -6.757], [41.079, -7.154], [39.393, -7.378], [38.879, -7.162], [38.573, -7.909], [38.571, -7.909], [38.728, -9.115], [38.713, -9.133], [38.707, -9.17], [38.699, -9.201], [38.697, -9.205], [38.691, -9.216], [38.787, -9.39], [38.797, -9.39], [38.937, -9.327], [39.36, -9.156], [39.548, -8.979], [39.659, -8.825], [39.236, -8.687]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.6, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_dc6ec48489717a30f650666a4bb70c99);
+        
+</script>
+</html>
