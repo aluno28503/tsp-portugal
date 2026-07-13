@@ -46,13 +46,22 @@ def main():
     random.seed(42)
     num_aleatorias = 10
     distancias_aleatorias = []
+    melhor_percurso_aleat = None
 
     for i in range(num_aleatorias):
-        _, dist_aleat = rota_aleatoria(pontos_turisticos, start=0)
+        perc_aleat, dist_aleat = rota_aleatoria(pontos_turisticos, start=0)
         distancias_aleatorias.append(dist_aleat)
+        # Guardar o melhor percurso aleatório para desenhar no mapa
+        if melhor_percurso_aleat is None or dist_aleat < min(distancias_aleatorias[:-1] + [float('inf')]):
+            melhor_percurso_aleat = perc_aleat
 
     media_aleatoria = sum(distancias_aleatorias) / len(distancias_aleatorias)
     melhor_aleatoria = min(distancias_aleatorias)
+
+    print(">> A criar mapa interativo (Rota Aleatória)...")
+    criar_mapa(pontos_turisticos, melhor_percurso_aleat,
+               titulo=f"Melhor Rota Aleatória ({melhor_aleatoria:.0f} km)",
+               nome_ficheiro="mapa_aleatorio.html")
 
     # C) Aplicar melhoria 2-opt
     print(">> A aplicar melhoria 2-opt ao percurso NN...")
