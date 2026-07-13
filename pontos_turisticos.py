@@ -63,17 +63,6 @@ pontos_turisticos = [
 # =============================================================================
 
 def haversine(lat1, lon1, lat2, lon2):
-    """
-    Calcula a distância real (em km) entre dois pontos na superfície terrestre
-    usando a fórmula de Haversine.
-
-    Parâmetros:
-        lat1, lon1 - coordenadas do primeiro ponto (em graus)
-        lat2, lon2 - coordenadas do segundo ponto (em graus)
-
-    Retorna:
-        Distância em quilómetros.
-    """
     R = 6371  # Raio médio da Terra em km
 
     # Converter graus para radianos
@@ -242,69 +231,33 @@ def two_opt(pontos, percurso_inicial):
 
 def criar_mapa(pontos, percurso, titulo="Percurso TSP", nome_ficheiro="mapa_percurso.html"):
     """
-    Cria um mapa interativo com Folium mostrando o percurso.
-
-    Parâmetros:
-        pontos         - lista de dicionários com os pontos turísticos
-        percurso       - lista ordenada dos índices visitados
-        titulo         - título do mapa
-        nome_ficheiro  - nome do ficheiro HTML de saída
+    Cria um mapa interativo simples com Folium mostrando o percurso.
     """
     # Centro do mapa (aproximadamente centro de Portugal continental)
     mapa = folium.Map(location=[39.7, -8.2], zoom_start=7, tiles="OpenStreetMap")
 
-    # Definir cores para tipos de pontos
-    def obter_cor(nome):
-        nome_lower = nome.lower()
-        if "unesco" in nome_lower:
-            return "red"
-        elif "castelo" in nome_lower:
-            return "blue"
-        elif "museu" in nome_lower or "fundação" in nome_lower:
-            return "green"
-        elif "partida" in nome_lower:
-            return "black"
-        else:
-            return "orange"
-
-    def obter_icone(nome):
-        nome_lower = nome.lower()
-        if "unesco" in nome_lower:
-            return "star"
-        elif "castelo" in nome_lower:
-            return "tower-broadcast"
-        elif "museu" in nome_lower or "fundação" in nome_lower:
-            return "building-columns"
-        elif "partida" in nome_lower:
-            return "flag"
-        else:
-            return "location-dot"
-
-    # Adicionar marcadores para cada ponto
+    # Adicionar marcadores simples para cada ponto
     for i, ponto in enumerate(pontos):
-        # Encontrar a posição no percurso (ordem de visita)
         if i in percurso:
             ordem = percurso.index(i)
         else:
             ordem = "?"
 
-        popup_text = f"""
-        <b>{ponto['nome']}</b><br>
-        Ordem de visita: {ordem}<br>
-        Lat: {ponto['lat']}, Lon: {ponto['lon']}
-        """
+        # Apenas um marcador circular simples (ponto)
+        cor = "green" if i == percurso[0] else "red"
+        tamanho = 8 if i == percurso[0] else 5
 
-        cor = obter_cor(ponto["nome"])
-        icone = obter_icone(ponto["nome"])
-
-        folium.Marker(
+        folium.CircleMarker(
             location=[ponto["lat"], ponto["lon"]],
-            popup=folium.Popup(popup_text, max_width=300),
-            tooltip=f"{ordem}. {ponto['nome']}",
-            icon=folium.Icon(color=cor, icon=icone, prefix="fa")
+            radius=tamanho,
+            color=cor,
+            fill=True,
+            fill_color=cor,
+            fill_opacity=1.0,
+            tooltip=f"{ordem}. {ponto['nome']}"
         ).add_to(mapa)
 
-    # Desenhar o percurso (linhas entre pontos consecutivos)
+    # Desenhar o percurso (linhas simples a unir os pontos)
     coordenadas_percurso = [
         [pontos[idx]["lat"], pontos[idx]["lon"]]
         for idx in percurso
@@ -312,27 +265,20 @@ def criar_mapa(pontos, percurso, titulo="Percurso TSP", nome_ficheiro="mapa_perc
 
     folium.PolyLine(
         coordenadas_percurso,
-        color="darkblue",
-        weight=3,
-        opacity=0.8,
-        dash_array="10"
+        color="blue",
+        weight=2,
+        opacity=0.6
     ).add_to(mapa)
 
-    # Adicionar legenda
-    legenda_html = f"""
-    <div style="position: fixed; bottom: 30px; left: 30px; z-index: 1000;
-                background-color: white; padding: 15px; border-radius: 8px;
-                border: 2px solid #333; font-family: Arial; font-size: 13px;
-                box-shadow: 2px 2px 6px rgba(0,0,0,0.3);">
-        <b>{titulo}</b><br><br>
-        <i class="fa fa-flag" style="color:black"></i> Ponto de Partida<br>
-        <i class="fa fa-star" style="color:red"></i> UNESCO<br>
-        <i class="fa fa-tower-broadcast" style="color:blue"></i> Castelo<br>
-        <i class="fa fa-building-columns" style="color:green"></i> Museu/Fundação<br>
-        <i class="fa fa-location-dot" style="color:orange"></i> Outros<br>
+    # Adicionar apenas o título no canto superior direito
+    titulo_html = f"""
+    <div style="position: fixed; top: 10px; right: 10px; z-index: 1000;
+                background-color: white; padding: 10px; border-radius: 5px;
+                border: 1px solid black; font-family: Arial; font-weight: bold;">
+        {titulo}
     </div>
     """
-    mapa.get_root().html.add_child(folium.Element(legenda_html))
+    mapa.get_root().html.add_child(folium.Element(titulo_html))
 
     # Guardar o mapa
     mapa.save(nome_ficheiro)
